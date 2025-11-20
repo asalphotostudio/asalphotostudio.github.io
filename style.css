@@ -1,24 +1,60 @@
+/* --- Базовые стили body --- */
 body {
   margin: 0;
   color: #fff;
-  font-family: Inter, Arial;
-  background-color: #000; /* теперь реально ЧЁРНЫЙ */
+  font-family: Inter, Arial, system-ui, sans-serif;
+  background-color: #000; /* Чёрный фон */
   background-image:
       radial-gradient(circle at 50% 20%, rgba(0,120,255,0.18), transparent 70%);
   background-repeat: no-repeat;
-  background-size: 900px 600px; /* точечная подсветка как ты хотел */
+  background-size: 900px 600px; /* точечная подсветка */
+  position: relative;
+  min-height: 100vh;
+  z-index: 0;
 }
-  
+
+/* --- Фон с эффектом overlay --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('https://i.postimg.cc/6qmck1DG/photo-2025-11-17-15-22-26.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55);
+  z-index: -1;
+  transition: transform 0.6s ease;
+}
+
+body:hover::before {
+  transform: scale(1.03);
+}
+
+/* --- Карты услуг --- */
 .card,
 .premium-card {
   pointer-events: none; /* полностью отключает клики */
   touch-action: none;   /* отключает мобильные взаимодействия */
 }
 
+.premium-card {
+  background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 18px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 6px 30px rgba(2,8,23,0.45);
+  transition: transform .18s ease, box-shadow .18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
 .premium-card:hover {
   transform: translateY(-6px);
-
-  /* чуть ярче, но всё ещё GPU-friendly */
   box-shadow: 0 0 30px rgba(0,150,255,0.22);
 }
 
@@ -27,13 +63,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-
-  /* легкий прозрачный ореол без blur */
-  background: radial-gradient(
-      circle at 50% 20%,
-      rgba(0, 150, 255, 0.08),
-      transparent 70%
-  );
+  background: radial-gradient(circle at 50% 20%, rgba(0, 150, 255, 0.08), transparent 70%);
   opacity: 0;
   transition: opacity 0.25s ease;
 }
@@ -41,28 +71,47 @@ body {
 .premium-card:hover::before {
   opacity: 1;
 }
-.studio-photo{
-  width:100%;
-  max-width:1100px;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 30px;
+
+/* --- Фото студии --- */
+.studio-photo {
+  width: 100%;
+  max-width: 1100px;
+  margin: 10px auto 30px;
   border-radius: 22px;
-  overflow:hidden;
-  box-shadow:0 20px 40px rgba(0,0,0,0.55);
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.55);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
-.studio-photo img{
-  width:100%;
-  height:auto;
-  display:block;
-  object-fit:cover;
-  transition:transform .6s ease;
+.studio-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform .6s ease;
 }
 
-.studio-photo:hover img{
-  transform:scale(1.06);
+.studio-photo:hover img {
+  transform: scale(1.06);
 }
 
+/* --- Заголовки --- */
+h2.section-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 36px 0 18px;
+}
+
+/* --- Адаптив --- */
+@media (min-width:900px){
+  .hero h1 { font-size: 38px; }
+  .brand-title { font-size: 44px; }
+}
+
+@media (max-width:420px){
+  .brand-title { font-size: 28px; }
+  .btn-main { padding: 12px 20px; font-size: 14px; }
+  .actions-panel a { width: 44px; height: 44px; font-size: 20px; }
+}
