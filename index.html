@@ -8,100 +8,87 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-  :root{
+:root{
     --bg-0:#03040a;
     --bg-1:#000;
     --muted:#bfc7cf;
     --accent-1:#4fc3ff;
     --accent-2:#0a6cff;
     --card:#0a0a0b;
-  }
+}
 
-  *{box-sizing:border-box}
-  html,body{height:100%; margin:0; font-family:Inter,Arial,system-ui,sans-serif;}
-  body{
+*{box-sizing:border-box;}
+html, body {height:100%; margin:0; font-family:Inter,Arial,system-ui,sans-serif;}
+body {
     color:#fff;
     position:relative;
     min-height:100vh;
     z-index:0;
-    background-color:#000;
-    background-image:
-      radial-gradient(circle at 50% 20%, rgba(0,120,255,0.18), transparent 70%);
-    background-repeat: no-repeat;
-    background-size: 900px 600px;
-  }
-
-  body::before {
+    background-color: #000;
+}
+body::before {
     content: "";
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top:0; left:0;
+    width:100%; height:100%;
     background-image: url('https://i.postimg.cc/6qmck1DG/photo-2025-11-17-15-22-26.jpg');
     background-size: cover;
     background-position: center;
     filter: brightness(0.55);
-    z-index: -1;
+    z-index:-1;
     transition: transform 0.6s ease;
-  }
-  body:hover::before {
+}
+body:hover::before {
     transform: scale(1.03);
-  }
+}
 
-  header{
+header{
     padding:28px 18px 8px;
     text-align:center;
-  }
+}
 
-  .brand-icon{
+.brand-icon{
     width:68px;height:68px;opacity:.95;margin-bottom:8px;border-radius:12px;
     background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
     display:inline-block;object-fit:contain;
-  }
+}
 
-  /* Анимированный заголовок */
-  .brand-title{
+/* Анимация текста */
+.brand-title{
     font-size:40px;
     font-weight:800;
-    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 25%, #4fc3ff 50%, #ffffff 75%, #ffffff 100%);
+    background-size: 200% auto;
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
     letter-spacing:-0.5px;
-    position: relative;
-    overflow: hidden;
-  }
+    animation: shine 2.5s linear infinite;
+}
 
-  .brand-title::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 75%;
-    height: 100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.0) 100%);
-    transform: skewX(-25deg);
-    animation: shine 2.5s infinite;
-  }
+@keyframes shine {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
 
-  @keyframes shine {
-    0% { left: -75%; }
-    100% { left: 100%; }
-  }
-
-  .brand-sub{
+.brand-sub{
     color:var(--muted);letter-spacing:4px;font-size:12px;margin-top:4px;
-  }
+}
 
-  .hero{
+.hero{
     text-align:center;padding:30px 20px 18px;
     max-width:980px;margin:0 auto;
-  }
-  .hero h1{margin:0;font-size:32px;font-weight:800;line-height:1.03}
-  .hero p{margin:12px auto 18px;color:var(--muted);max-width:820px}
+}
 
-  .hero .top-action{
+.hero h1{margin:0;font-size:32px;font-weight:800;line-height:1.03}
+.hero p{margin:12px auto 18px;color:var(--muted);max-width:820px}
+
+.hero .top-action{
     display:flex;justify-content:center;margin-bottom:16px;
-  }
-  .btn{
+}
+
+.btn{
     display:inline-flex;align-items:center;gap:10px;
     padding:12px 20px;border-radius:12px;
     text-decoration:none;color:#fff;font-weight:700;
@@ -109,41 +96,55 @@
     box-shadow:0 6px 20px rgba(11,111,181,0.14), inset 0 -1px 0 rgba(255,255,255,0.03);
     transition:transform .16s ease,box-shadow .16s ease,opacity .12s;
     white-space:nowrap;
-  }
-  .btn:active{transform:translateY(1px)}
-  .btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(11,111,181,0.18)}
-  .btn .emoji{font-size:18px;line-height:1}
+}
+.btn:active{transform:translateY(1px)}
+.btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(11,111,181,0.18)}
+.btn .emoji{font-size:18px;line-height:1}
 
-  .actions{
+.actions{
     margin-top:6px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
-  }
+}
 
-  h2.section-title{
+h2.section-title{
     text-align:center;font-size:26px;font-weight:800;margin:36px 0 18px;
-  }
+}
 
-  .service-list{
+.service-list{
     width:94%;max-width:980px;margin:0 auto 60px;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:20px;
-  }
+}
 
-  .premium-card{
+.premium-card{
     background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
     border-radius:18px;border:1px solid rgba(255,255,255,0.04);
     padding:18px;min-height:120px;display:flex;flex-direction:column;justify-content:center;
     box-shadow:0 6px 30px rgba(2,8,23,0.45);
     transition:transform .18s ease,box-shadow .18s ease;
     position:relative;overflow:hidden;
-  }
-  .premium-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,8,23,0.6)}
+}
+.premium-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,8,23,0.6)}
 
-  .card-body{padding:6px 4px}
-  .card-body h3{margin:0 0 8px;font-size:18px;font-weight:800}
-  .card-body p{margin:0;color:var(--muted);line-height:1.45;font-size:14px}
+.card-body{padding:6px 4px}
+.card-body h3{margin:0 0 8px;font-size:18px;font-weight:800}
+.card-body p{margin:0;color:var(--muted);line-height:1.45;font-size:14px}
 
-  .studio-photo{
+footer{
+    text-align:center;padding:26px 16px;color:#8b929a;border-top:1px solid rgba(255,255,255,0.03);
+    max-width:980px;margin:0 auto;border-radius:6px;
+}
+
+@media (min-width:900px){
+    .hero h1{font-size:38px}
+    .brand-title{font-size:44px}
+}
+@media (max-width:420px){
+    .brand-title{font-size:28px}
+    .btn{padding:10px 14px;font-size:14px}
+}
+
+.studio-photo{
     width:100%;
     max-width:1100px;
     margin: 10px auto 30px;
@@ -152,35 +153,24 @@
     box-shadow:0 20px 40px rgba(0,0,0,0.55);
     background:rgba(255,255,255,0.04);
     border:1px solid rgba(255,255,255,0.06);
-  }
-  .studio-photo img{
+}
+
+.studio-photo img{
     width:100%;
     height:auto;
     display:block;
     object-fit:cover;
     transition:transform .6s ease;
-  }
-  .studio-photo:hover img{
+}
+
+.studio-photo:hover img{
     transform:scale(1.06);
-  }
-
-  footer{
-    text-align:center;padding:26px 16px;color:#8b929a;border-top:1px solid rgba(255,255,255,0.03);
-    max-width:980px;margin:0 auto;border-radius:6px;
-  }
-
-  @media (min-width:900px){
-    .hero h1{font-size:38px}
-    .brand-title{font-size:44px}
-  }
-  @media (max-width:420px){
-    .brand-title{font-size:28px}
-    .btn{padding:10px 14px;font-size:14px}
-  }
+}
 </style>
 </head>
 
 <body>
+
 <header>
   <img class="brand-icon" src="https://cdn.jsdelivr.net/gh/encharm/Font-Awesome-SVG-PNG/white/png/256/camera.png" alt="camera">
   <div class="brand-title">Asal Photostudio</div>
@@ -193,8 +183,7 @@
 
   <div class="top-action">
     <a class="btn" href="https://t.me/FotoAsal" target="_blank" rel="noopener noreferrer">
-      <span class="emoji">🖼️</span>
-      Наши работы
+      <span class="emoji">🖼️</span> Наши работы
     </a>
   </div>
 
@@ -209,9 +198,9 @@
   </p>
 </section>
 
-<div class="studio-photo">
+<section class="studio-photo">
   <img src="https://i.postimg.cc/6qmck1DG/photo-2025-11-17-15-22-26.jpg" alt="Фотостудия Asal">
-</div>
+</section>
 
 <h2 class="section-title">Наши услуги</h2>
 
@@ -241,6 +230,6 @@
 <footer>
   © 2025 Asal Photostudio — Ваши лучшие моменты в профессиональном качестве
 </footer>
+
 </body>
 </html>
-
