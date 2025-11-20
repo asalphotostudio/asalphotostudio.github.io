@@ -52,12 +52,17 @@ header{
     background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
     display:inline-block;object-fit:contain;
 }
-
-/* Анимация текста */
 .brand-title{
     font-size:40px;
     font-weight:800;
-    background: linear-gradient(90deg, #ffffff 0%, #ffffff 25%, #4fc3ff 50%, #ffffff 75%, #ffffff 100%);
+    background: linear-gradient(
+        90deg,
+        #4fc3ff 0%,     /* основной синий */
+        #a0d8ff 25%,    /* светлый синий, лёгкая подсветка */
+        #ffffff 50%,    /* белый — только в центре */
+        #a0d8ff 75%,    /* светлый синий */
+        #4fc3ff 100%    /* основной синий */
+    );
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -71,6 +76,7 @@ header{
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
 }
+
 
 .brand-sub{
     color:var(--muted);letter-spacing:4px;font-size:12px;margin-top:4px;
@@ -206,4 +212,5 @@ footer{
 
 </body>
 </html>
+
 
