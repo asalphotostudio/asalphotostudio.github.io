@@ -27,18 +27,23 @@
     z-index:0;
   }
 
-  /* Чёткий фон с лёгким тёмным overlay */
-  body::before{
-    content:"";
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background-image: url('https://i.postimg.cc/6qmck1DG/photo-2025-11-17-15-22-26.jpg');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.55); /* тёмный overlay для читаемости текста */
-    z-index:-1;
-  }
+    filter: brightness(0.55);
+    z-index: -1;
+    transition: transform 0.6s ease;
+}
+
+body:hover::before {
+    transform: scale(1.03);
+}
+
 
   header{
     padding:28px 18px 8px;
@@ -192,4 +197,5 @@
 
 </body>
 </html>
+
 
