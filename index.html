@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#000000">
 <title>Asal Photostudio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="scripts/main.js" defer></script>
 
 <style>
   :root{
@@ -23,73 +24,67 @@
     margin:0;
     font-family:Inter,Arial,system-ui,sans-serif;
     color:#fff;
-    background:linear-gradient(180deg,var(--bg-0), var(--bg-1));
-  }
-
-  /* HERO С ФОТОГРАФИЕЙ */
-  .hero-photo{
-    width:100%;
-    height:70vh;
-    background:url("/mnt/data/photo_2025-11-17_15-22-26.jpg") center/cover no-repeat;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-  }
-
-  .hero-photo::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.82));
-  }
-
-  .hero-text{
-    position:relative;
-    z-index:2;
-    padding:0 20px;
-  }
-
-  .hero-text h1{
-    font-size:40px;
-    font-weight:800;
-    margin:0 0 12px;
-  }
-
-  .hero-text p{
-    font-size:16px;
-    max-width:600px;
-    margin:0 auto;
-    color:#d0d5db;
+    background:
+      radial-gradient(1200px 400px at 10% 10%, rgba(12,50,255,0.06), transparent 8%),
+      radial-gradient(800px 300px at 90% 90%, rgba(10,108,255,0.04), transparent 8%),
+      linear-gradient(180deg,var(--bg-0), var(--bg-1));
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding-bottom:40px;
   }
 
   header{
+    padding:28px 18px 8px;
     text-align:center;
-    padding:26px 16px;
+  }
+
+  .brand-icon{
+    width:68px;height:68px;opacity:.95;margin-bottom:8px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+    display:inline-block;object-fit:contain;
   }
 
   .brand-title{
-    font-size:42px;font-weight:800;
+    font-size:40px;font-weight:800;
     background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    letter-spacing:-0.5px;
   }
 
   .brand-sub{
-    color:var(--muted);letter-spacing:4px;font-size:12px;
+    color:var(--muted);letter-spacing:4px;font-size:12px;margin-top:4px;
   }
 
+  .hero{
+    text-align:center;padding:30px 20px 18px;
+    max-width:980px;margin:0 auto;
+  }
+
+  .hero h1{margin:0;font-size:32px;font-weight:800;line-height:1.03}
+  .hero p{margin:12px auto 18px;color:var(--muted);max-width:820px}
+
+  /* ВЕРХНЯЯ КНОПКА (Наши работы) */
+  .hero .top-action{
+    display:flex;justify-content:center;margin-bottom:16px;
+  }
   .btn{
     display:inline-flex;align-items:center;gap:10px;
-    padding:12px 22px;border-radius:12px;
+    padding:12px 20px;border-radius:12px;
     text-decoration:none;color:#fff;font-weight:700;
     background:linear-gradient(90deg,#34a9ff,#0b6fb5);
-    box-shadow:0 6px 20px rgba(11,111,181,0.2);
-    margin-top:20px;
-    transition:0.2s;
+    box-shadow:0 6px 20px rgba(11,111,181,0.14), inset 0 -1px 0 rgba(255,255,255,0.03);
+    transition:transform .16s ease,box-shadow .16s ease,opacity .12s;
+    white-space:nowrap;
   }
-  .btn:hover{transform:translateY(-4px)}
+  .btn:active{transform:translateY(1px)}
+  .btn:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(11,111,181,0.18)}
+  .btn .emoji{font-size:18px;line-height:1}
 
+  .actions{
+    margin-top:6px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  }
+
+  /* Секции услуг */
   h2.section-title{
     text-align:center;font-size:26px;font-weight:800;margin:36px 0 18px;
   }
@@ -102,63 +97,106 @@
   }
 
   .premium-card{
-    background:rgba(255,255,255,0.02);
-    border-radius:18px;border:1px solid rgba(255,255,255,0.05);
-    padding:18px;min-height:120px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;border:1px solid rgba(255,255,255,0.04);
+    padding:18px;min-height:120px;display:flex;flex-direction:column;justify-content:center;
     box-shadow:0 6px 30px rgba(2,8,23,0.45);
-    transition:0.2s;
+    transition:transform .18s ease,box-shadow .18s ease;
+    position:relative;overflow:hidden;
   }
-  .premium-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 40px rgba(2,8,23,0.6);
+  .premium-card::after{
+    content:"";position:absolute;inset:auto -40% -40% auto;width:260px;height:260px;
+    background:radial-gradient(circle at 30% 30%, rgba(10,108,255,0.06), transparent 35%);
+    transform:translate(0,0);pointer-events:none;
   }
+  .premium-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,8,23,0.6)}
+
+  .card-body{padding:6px 4px}
+  .card-body h3{margin:0 0 8px;font-size:18px;font-weight:800}
+  .card-body p{margin:0;color:var(--muted);line-height:1.45;font-size:14px}
 
   footer{
-    text-align:center;padding:26px 16px;color:#8b929a;
-    border-top:1px solid rgba(255,255,255,0.06);
+    text-align:center;padding:26px 16px;color:#8b929a;border-top:1px solid rgba(255,255,255,0.03);
+    max-width:980px;margin:0 auto;border-radius:6px;
   }
 
+  /* адаптив */
+  @media (min-width:900px){
+    .hero h1{font-size:38px}
+    .brand-title{font-size:44px}
+  }
+  @media (max-width:420px){
+    .brand-title{font-size:28px}
+    .btn{padding:10px 14px;font-size:14px}
+  }
 </style>
 </head>
 
 <body>
 
 <header>
+  <img class="brand-icon" src="https://cdn.jsdelivr.net/gh/encharm/Font-Awesome-SVG-PNG/white/png/256/camera.png" alt="camera">
   <div class="brand-title">Asal Photostudio</div>
   <div class="brand-sub">PREMIUM • PHOTOGRAPHY</div>
 </header>
 
-<!-- HERO БЛОК С ФОТОГРАФИЕЙ ЗДАНИЯ -->
-<section class="hero-photo">
-  <div class="hero-text">
-    <h1>Премиальная фотостудия в Ургенче</h1>
-    <p>Профессиональная съёмка, ретушь, печать и рекламная продукция.</p>
-    <a class="btn" href="https://t.me/FotoAsal" target="_blank">Наши работы</a>
+<!-- Секция с фото здания студии -->
+<section class="studio-photo" style="text-align:center; margin:20px 0;">
+  <img src="https://downloader.disk.yandex.ru/preview/37198560684a2f6f4188993ab84fff7fd2df7e8973a887fd93627816e7f1631b/691f1df3/ZF60WDzb3mO9VvPzvqt1HA_PzV5HvYgdARLj3lco_U2ICkzP4ZtLNzrb6G_EEBcc3K9kA8JhaNQrfSIkpaWqeA%3D%3D?uid=0&filename=photo_2025-11-17_15-22-26.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=0&tknv=v3&size=2048x2048" alt="Фотостудия Asal"
+       style="max-width:90%; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,0.4);">
+</section>
+
+<section class="hero">
+  <h1>Премиальная профессиональная фотостудия в Ургенче</h1>
+  <p>Создаём атмосферные портреты и рекламный контент, аккуратно обрабатываем и печатаем ваши лучшие снимки.</p>
+
+  <div class="top-action">
+    <a class="btn" href="https://t.me/FotoAsal" target="_blank" rel="noopener noreferrer">
+      <span class="emoji">🖼️</span>
+      Наши работы
+    </a>
   </div>
+
+  <div class="actions">
+    <a class="btn" href="tel:+998937450898"><span class="emoji">📞</span> Позвонить</a>
+    <a class="btn" href="https://t.me/alisherfoto" target="_blank" rel="noopener noreferrer"><span class="emoji">✈️</span> Telegram</a>
+    <a class="btn" href="https://instagram.com/alisherfoto" target="_blank" rel="noopener noreferrer"><span class="emoji">📷</span> Instagram</a>
+  </div>
+
+  <p style="margin-top:14px;color:#7f878e;font-size:15px;">
+    🕘 График работы: <b>09:00 — 18:00</b>
+  </p>
 </section>
 
 <h2 class="section-title">Наши услуги</h2>
 
 <div class="service-list">
   <article class="premium-card">
-    <h3>📸 Фотосессии</h3>
-    <p>Индивидуальные, семейные, love-story, свадьбы и коммерческая съемка.</p>
+    <div class="card-body">
+      <h3>📸 Фотосессии</h3>
+      <p>Индивидуальные, семейные, детские, love-story и свадебные фотосессии в премиальном стиле.</p>
+    </div>
   </article>
 
   <article class="premium-card">
-    <h3>🎨 Обработка фото</h3>
-    <p>Профессиональная ретушь и цветокоррекция.</p>
+    <div class="card-body">
+      <h3>🎨 Обработка фото</h3>
+      <p>Профессиональная ретушь, цветокоррекция и художественная обработка для коммерческих и личных проектов.</p>
+    </div>
   </article>
 
   <article class="premium-card">
-    <h3>🖨️ Печать фотографий</h3>
-    <p>Фотокниги, постеры и любые форматы печати.</p>
+    <div class="card-body">
+      <h3>🖨️ Печать фотографий</h3>
+      <p>Качественная печать, фотокниги и постеры — все форматы и материалы под ваш запрос.</p>
+    </div>
   </article>
 </div>
 
 <footer>
-  © 2025 Asal Photostudio — Премиальная фотография в Ургенче
+  © 2025 Asal Photostudio — Ваши лучшие моменты в профессиональном качестве
 </footer>
 
 </body>
 </html>
+
